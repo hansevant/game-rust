@@ -6,7 +6,8 @@ fn main() {
     println!("Tebak Angka!");
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
-    println!("{}", secret_number);
+    // println!("{}", secret_number);
+    let mut count = 0;
 
     loop {
         println!("Masukkan Angka !");
@@ -22,6 +23,8 @@ fn main() {
             Err(_) => continue,
         };
 
+        count += 1;
+
         println!("Tebakkanmu : {}", guess);
     
         match guess.cmp(&secret_number)  {
@@ -29,6 +32,7 @@ fn main() {
             Ordering::Greater => println!("terlalu besar"),
             Ordering::Equal => {
                 println!("Benar");
+                println!("Percobaan = {} kali", count);
                 break;
             }
         } 
